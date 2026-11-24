@@ -1,0 +1,17 @@
+{
+  "type": "object",
+  "properties": {
+    "city": {"type": "string", "minLength": 1},
+    "days": {"type": "integer", "minimum": 1, "maximum": 7},
+    "units": {"enum": ["metric", "imperial"]},
+    "alerts": {"type": "array", "uniqueItems": true, "items": {"type": "string"}},
+    "contact": {
+      "type": "object",
+      "properties": {"email": {"type": "string"}},
+      "required": ["email"],
+      "additionalProperties": false
+    }
+  },
+  "required": ["city"],
+  "additionalProperties": false
+}

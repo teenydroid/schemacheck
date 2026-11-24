@@ -1,0 +1,10 @@
+{"op": "missing required city"}
+{"city": 42}
+{"city": ""}
+{"city": "Paris", "days": 0}
+{"city": "Paris", "days": 30}
+{"city": "Paris", "days": "3"}
+{"city": "Paris", "units": "kelvin"}
+{"city": "Paris", "extra": true}
+{"city": "Paris", "alerts": ["storm", "storm"]}
+{"city": "Paris", "contact": {"phone": "555-0100"}}
