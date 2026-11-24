@@ -1,3 +1,0 @@
-LEAK line 1: {"op": "missing required city"}
-LEAK line 8: {"city": "Paris", "extra": true}
-rejected 8/10 bad calls; 2 leaked

@@ -26,7 +26,7 @@ MAX_CHILD_OUTPUT = 200_000  # bytes we will ever read back from a child
 
 def run_tool(*argv, timeout=20):
     """Run schemacheck in a bounded child: RLIMIT_AS + timeout + capped output."""
-    out_path = Path(tempfile.mkdtemp(dir=HERE)) / "out.txt"
+    out_path = Path(tempfile.mkdtemp()) / "out.txt"  # default TMPDIR, never the repo dir
     limit = "import resource,sys; resource.setrlimit(resource.RLIMIT_AS,(500_000_000,)*2); sys.argv=%r" % (
         [str(TOOL)] + [str(a) for a in argv],)
     code = limit + "; exec(open(sys.argv[0]).read())"
