@@ -1,0 +1,22 @@
+{
+  "_provenance": "Hand translation of the zod inputSchema of create_entities in modelcontextprotocol/servers src/memory/index.ts at HEAD (fetched 2026-11-25T03:1xZ), lines 1165-1177 (EntitySchema) and 1292-1298 (tool inputSchema). zod facts kept: plain fields are required; unknown keys are STRIPPED by default, not rejected, so additionalProperties is deliberately absent; no minLength/minItems/bounds exist in the zod source.",
+  "type": "object",
+  "properties": {
+    "entities": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "entityType": { "type": "string" },
+          "observations": {
+            "type": "array",
+            "items": { "type": "string" }
+          }
+        },
+        "required": ["name", "entityType", "observations"]
+      }
+    }
+  },
+  "required": ["entities"]
+}

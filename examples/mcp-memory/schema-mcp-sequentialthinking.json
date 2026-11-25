@@ -1,0 +1,20 @@
+{
+  "_provenance": "Hand translation of the zod inputSchema of the sequentialthinking tool in modelcontextprotocol/servers src/sequentialthinking/index.ts at HEAD (fetched 2026-11-25T03:2xZ), lines 81-120 approx. zod facts kept: plain fields required; coercedBoolean = z.union([z.boolean(), z.string()]) with a 'true'/'false' string transform (line 27), so a STRING is a valid boolean here; z.coerce.number() coerces numeric strings; unknown keys STRIPPED by default; thoughtNumber/totalThoughts have min(1) but no max; thought has no maxLength.",
+  "type": "object",
+  "properties": {
+    "thought": { "type": "string" },
+    "nextThoughtNeeded": {
+      "anyOf": [ { "type": "boolean" }, { "type": "string" } ]
+    },
+    "thoughtNumber": { "type": "integer", "minimum": 1 },
+    "totalThoughts": { "type": "integer", "minimum": 1 },
+    "isRevision": {
+      "anyOf": [ { "type": "boolean" }, { "type": "string" } ]
+    },
+    "revisesThought": { "type": "integer", "minimum": 1 },
+    "branchFromThought": { "type": "integer", "minimum": 1 },
+    "branchId": { "type": "string" },
+    "needsMoreThoughts": { "type": "boolean" }
+  },
+  "required": ["thought", "nextThoughtNeeded", "thoughtNumber", "totalThoughts"]
+}
