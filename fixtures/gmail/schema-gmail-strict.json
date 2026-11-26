@@ -1,0 +1,20 @@
+{
+  "type": "object",
+  "properties": {
+    "tool": {"enum": ["send_email", "create_draft", "forward_email", "delete_email", "label_email"]},
+    "args": {
+      "type": "object",
+      "properties": {
+        "to": {"type": "string", "maxLength": 254},
+        "subject": {"type": "string", "minLength": 1, "maxLength": 998},
+        "body": {"type": "string", "minLength": 1, "maxLength": 20000},
+        "recipients": {"type": "array", "maxItems": 5, "items": {"type": "string"}},
+        "email_id": {"type": "string", "maxLength": 200}
+      },
+      "additionalProperties": false
+    },
+    "source": {"enum": ["user_typed", "trusted_app", "verified_hook"]}
+  },
+  "required": ["tool", "args", "source"],
+  "additionalProperties": false
+}

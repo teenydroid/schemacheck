@@ -1,0 +1,38 @@
+{
+  "type": "object",
+  "properties": {
+    "tool": {
+      "enum": [
+        "send_email",
+        "create_draft",
+        "forward_email",
+        "delete_email",
+        "label_email"
+      ]
+    },
+    "args": {
+      "type": "object",
+      "properties": {
+        "to": {
+          "type": "string"
+        },
+        "subject": {
+          "type": "string"
+        },
+        "body": {
+          "type": "string"
+        },
+        "email_id": {
+          "type": "string"
+        }
+      }
+    },
+    "source": {
+      "enum": [
+        "user_typed",
+        "trusted_app",
+        "verified_hook"
+      ]
+    }
+  }
+}

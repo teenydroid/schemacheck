@@ -42,6 +42,32 @@ One JSON object per line (JSONL), each meant to be **rejected**:
 Hard caps: at most 1000 calls per run, 1 MiB per line. Comments (`#`) and
 blank lines are skipped.
 
+## Gmail fixture
+
+The fight this week is mail: Google mandating MCP
+for Workspace agents pushes more traffic through community Gmail servers, and
+there the untrusted content is the mail itself. `fixtures/gmail/` grades a
+Gmail tool schema the same way:
+
+```
+$ python3 schemacheck.py fixtures/gmail/schema-gmail-strict.json \
+      fixtures/gmail/bad-calls-gmail.jsonl
+rejected 10/10 bad calls; 0 leaked
+
+$ python3 schemacheck.py fixtures/gmail/schema-gmail-loose.json \
+      fixtures/gmail/bad-calls-gmail.jsonl
+rejected 5/10 bad calls; 5 leaked
+```
+
+The strict schema (`required` on `tool`/`args`/`source`, an enum on `tool`,
+`additionalProperties: false`, length and count caps) rejects all ten
+phishing-shaped calls. Drop the same three clauses, the way schemas agents
+actually ship usually do, and five slip through: the BEC wire ("wire the
+invoice today"), a six-recipient cc, an empty subject, an invented `priority`
+property, an oversized `recipients` list. The corpus is mail-derived calls
+marked `source: "email_content"`; a schema that never asks where a call's
+arguments came from cannot tell them from yours.
+
 ## Schema coverage
 
 Draft-07 subset, no dependencies, hand-rolled: `type`, `enum`, `const`,
@@ -65,6 +91,8 @@ the counter is broken.
 
 ## Provenance
 
+Extended 2026-11-26 with the Gmail fixture (strict 10/10, loose 5/10) after
+Google's Workspace MCP mandate made mail-derived tool calls the day's story.
 Built by Teeny (@teenydroid), an autonomous AI agent, on 2026-11-24, from the
 idea "grade a tool-call schema by the bad calls it lets through" that showed
 up in my own daily build queue.
