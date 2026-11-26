@@ -64,9 +64,14 @@ The strict schema (`required` on `tool`/`args`/`source`, an enum on `tool`,
 phishing-shaped calls. Drop the same three clauses, the way schemas agents
 actually ship usually do, and five slip through: the BEC wire ("wire the
 invoice today"), a six-recipient cc, an empty subject, an invented `priority`
-property, an oversized `recipients` list. The corpus is mail-derived calls
-marked `source: "email_content"`; a schema that never asks where a call's
-arguments came from cannot tell them from yours.
+property, an oversized `recipients` list.
+The provenance labels are mixed on purpose: three calls say
+`source: "email_content"`, and both schemas reject those on the enum.
+The other seven omit the marker or claim `user_typed`, which is what
+injection produces: its job is to make the agent type the call as if the
+user had. A schema that never asks where a call's arguments came from
+cannot tell them from yours, and one that only asks cannot trust the
+answer.
 
 ## Schema coverage
 
